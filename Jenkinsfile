@@ -31,9 +31,21 @@ pipeline {
         }
       }
     }
+    stage('Pull Image') {
+      steps{
+        script {
+          //docker.withRegistry( '', registryCredential ) {
+            docker.withRegistry(ECRURL,ECRCRED) {
+            dockerImage.pull()
+          }
+        }
+      }
+    }
     stage('Remove Unused docker image') {
       steps{
+        sh "docker stop $registry:$BUILD_NUMBER"
         sh "docker rmi $registry:$BUILD_NUMBER"
+       // sh "docker run -d --name  front-end-react -p 9001:9001 
       }
     }
   }
