@@ -40,6 +40,7 @@ pipeline {
           //docker.withRegistry( '', registryCredential ) {
             docker.withRegistry(ECRURL,ECRCRED) {
             dockerImage.pull()
+            sh "docker run -d --name $registry:$BUILD_NUMBER -p 9001:9001"  
            //docker.image(PROJECT).pull($BUILD_NUMBER)
           }
         }
@@ -50,7 +51,7 @@ pipeline {
         //sh "docker stop $registry:$BUILD_NUMBER"
         sh "docker rmi $registry:$BUILD_NUMBER"
         //sh "docker run -d --name $registry:$BUILD_NUMBER -p 9001:9001 docker.withRegistry(ECRURL,ECRCRED)"
-        sh "docker run -d --name $registry:$BUILD_NUMBER -p 9001:9001 ${ECR_URL}+${ECRCRED}"
+        
       }
     }
   }
