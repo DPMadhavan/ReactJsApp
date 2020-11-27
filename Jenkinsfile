@@ -3,6 +3,9 @@ pipeline {
     registry = "milan"
     registryCredential = 'awscred'
     dockerImage = ''
+    VERSION = "$BUILD_NUMBER"
+    PROJECT = 'milan'
+    IMAGE = "$PROJECT:$VERSION"
     ECRURL = 'https://780862318210.dkr.ecr.ap-south-1.amazonaws.com/milan'
     ECRCRED = 'ecr:ap-south-1:awscred'
   }
@@ -26,7 +29,7 @@ pipeline {
         script {
           //docker.withRegistry( '', registryCredential ) {
             docker.withRegistry(ECRURL,ECRCRED) {
-            dockerImage.push()
+            dockerImage.push()          
           }
         }
       }
@@ -37,15 +40,16 @@ pipeline {
           //docker.withRegistry( '', registryCredential ) {
             docker.withRegistry(ECRURL,ECRCRED) {
             dockerImage.pull()
+           //docker.image(PROJECT).pull($BUILD_NUMBER)
           }
         }
       }
     }
     stage('Remove Unused docker image') {
       steps{
-        //sh "docker stop $registry:$BUILD_NUMBER"
+        sh "docker stop $registry:$BUILD_NUMBER"
         sh "docker rmi $registry:$BUILD_NUMBER"
-       // sh "docker run -d --name $registry:$BUILD_NUMBER -p 9001:9001 
+        sh "docker run -d --name $registry:$BUILD_NUMBER -p 9001:9001 docker.withRegistry(ECRURL,ECRCRED)"
       }
     }
   }
