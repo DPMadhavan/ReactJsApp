@@ -1,11 +1,8 @@
 pipeline {
   environment {
-    registry = "milan"
+    registry = "front_end-"
     registryCredential = 'awscred'
-    dockerImage = ''
-    VERSION = "$BUILD_NUMBER"
-    PROJECT = 'milan'
-    IMAGE = "$PROJECT:$VERSION"
+    dockerImage = ''        
     ECRURL = 'https://780862318210.dkr.ecr.ap-south-1.amazonaws.com/milan'
     ECRCRED = 'ecr:ap-south-1:awscred'
   }
