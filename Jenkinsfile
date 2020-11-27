@@ -40,7 +40,7 @@ pipeline {
           //docker.withRegistry( '', registryCredential ) {
             docker.withRegistry(ECRURL,ECRCRED) {
             dockerImage.pull()
-            sh "docker run -d --name $registry:$BUILD_NUMBER -p 9001:9001"  
+            sh "docker run -d --name Sakthi -p 9001:9001 780862318210.dkr.ecr.ap-south-1.amazonaws.com/milan:$BUILD_NUMBER"  
            //docker.image(PROJECT).pull($BUILD_NUMBER)
           }
         }
