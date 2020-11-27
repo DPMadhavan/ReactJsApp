@@ -10,6 +10,7 @@ pipeline {
   stages {
     stage('Get SCM') {
       steps {
+        sh 'rm -rf ReactJsApp' 
         sh 'git clone https://github.com/DPMadhavan/ReactJsApp.git'
       }
     }
