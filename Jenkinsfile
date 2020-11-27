@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "front_end"
+    registry = "milan"
     registryCredential = 'awscred'
     dockerImage = ''        
     ECRURL = 'https://780862318210.dkr.ecr.ap-south-1.amazonaws.com/milan'
@@ -17,7 +17,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + "front_end:$BUILD_NUMBER"
         }
       }
     }
