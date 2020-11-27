@@ -43,7 +43,7 @@ pipeline {
     }
     stage('Remove Unused docker image') {
       steps{
-        sh "docker stop $registry:$BUILD_NUMBER"
+        //sh "docker stop $registry:$BUILD_NUMBER"
         sh "docker rmi $registry:$BUILD_NUMBER"
        // sh "docker run -d --name $registry:$BUILD_NUMBER -p 9001:9001 
       }
