@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('Get SCM') {
       steps {
-        sh 'git clone https://github.com/SakthiDhandapani/ReactJsApp.git'
+        sh 'git clone https://github.com/DPMadhavan/ReactJsApp.git'
       }
     }
     stage('Building image') {
