@@ -17,7 +17,10 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + "front_end:$BUILD_NUMBER"
+          //dockerImage = docker.build registry + "front_end:$BUILD_NUMBER"
+          sh "docker build --tag="front_end-"$BUILD_ID:"front_end-"$BUILD_ID ."        
+          sh "docker tag "front_end-"$BUILD_ID:"front_end-"$BUILD_ID 780862318210.dkr.ecr.ap-south-1.amazonaws.com/milan:"front_end-"$BUILD_ID""
+
         }
       }
     }
