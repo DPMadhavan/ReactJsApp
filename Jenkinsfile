@@ -45,7 +45,7 @@ pipeline {
       steps{
         sh "docker stop $registry:$BUILD_NUMBER"
         sh "docker rmi $registry:$BUILD_NUMBER"
-       // sh "docker run -d --name  front-end-react -p 9001:9001 
+       // sh "docker run -d --name $registry:$BUILD_NUMBER -p 9001:9001 
       }
     }
   }
