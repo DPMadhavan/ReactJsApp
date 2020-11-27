@@ -3,6 +3,8 @@ pipeline {
     registry = "milan"
     registryCredential = 'awscred'
     dockerImage = ''
+    ECRURL = 'https://780862318210.dkr.ecr.ap-south-1.amazonaws.com/milan'
+    ECRCRED = 'ecr:ap-south-1:awscred'
   }
   agent any
   stages {
@@ -21,7 +23,8 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
+          //docker.withRegistry( '', registryCredential ) {
+            docker.withRegistry(ECRURL,ECRCRED) {
             dockerImage.push()
           }
         }
